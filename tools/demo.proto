@@ -1,0 +1,10 @@
+
+message	Demo
+{
+	required	uint32	id		=	1;
+	optional	string	name	=	2;
+};
+message DemoTable
+{
+	repeated	Demo	list	=	1;
+};
