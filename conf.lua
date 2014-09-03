@@ -27,9 +27,9 @@ addgroup
 
 addtable
 {
-	meta=demo.des,--meta name
-	xls=demo.xls,--default name is same with meta 
-	bin=demo,--default name is same with meta
+	meta=demo_conf.py,--meta name
+	xls=demo.xlsx,--default name is same with meta 
+	bin=demo.bin,--default name is same with meta
 	count=100, --default is 16
 	sort=asc,--default is asc
 	group=1,--default is 1
