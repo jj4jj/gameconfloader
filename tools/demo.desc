@@ -31,7 +31,8 @@ demo = [
 
 ########################################
 def ConvDescToProtoCode(name,dsc):
-	proto = 'message '+name+' {\n'
+	proto = '##### generate protobuf proto file begin meta = '+name+' #######\n'
+	proto += 'message '+name+' {\n'
 	tag=1
 	for attr in dsc:
 		proto +='\t';
@@ -47,11 +48,16 @@ def ConvDescToProtoCode(name,dsc):
 		proto += str(tag)+' ; ';
 		if('default' in attr and  attr['default'] > 0):
 			proto += '[ defaul = '+attr['default']+' ] '	
-		proto += '\t--'+attr['desc']+'--'+attr['cname'];
+		proto += '\t--'+attr['desc']+' --'+attr['cname'];
 		tag = tag+1
 		proto += '\n'
 	proto += '}\n'
+	proto += '\nmessage '+name+'Table {\n'
+	proto += '\trepeated\tlist\t'+name+'\t=\t1;\n'
+	proto += '}\n'
+	proto += '##### generate protobuf proto file end meta = '+name+' #######\n'
 	print(proto)
+	
 
 
 
