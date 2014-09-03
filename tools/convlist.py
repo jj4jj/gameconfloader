@@ -51,25 +51,25 @@ def printObj(tableObj):
 #############################################################################
 
 
+if (len(sys.argv) < 4):
+	print("usage:./convlist.py <meta name> <TableName> <xlsFile> <binFile>")
+	sys.exit(-1)
 
-
-
-
-
-
-
-
-
-
-import	demo_pb2
+metaName=sys.argv[1]
+metaTableName=sys.argv[2]
+metaPBPackage=metaName+"_pb2"
+metaKeywords=metaName+"_keywords"
+xlsFile=sys.argv[3]
+binFile=sys.argv[4]
+md =__import__(metaPBPackage)
+mdk = __import__(metaKeywords)
+#####################################
+metaTableObj = getattr(md,metaTableName)()
+metaTitleMap = getattr(mdk,'TitleMap')()
+#check
+print(metaTitleMap)
 ######################################
-demotable = demo_pb2.DemoTable()
-readBinToObj(demotable,'demo.bin')
-printObj(demotable)
-demoTitleMap={}
-#demoTitleMap[u'ID']='id'
-#demoTitleMap[u'']='name'
-#writeXlsToBin(demotable,'demo.xlsx','demo.bin',demoTitleMap);
+writeXlsToBin(metaTableObj,xlsFile,binFile,metaTitleMap);
 
 
 

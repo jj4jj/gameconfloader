@@ -2,7 +2,7 @@
 
 conv_tables={}
 conv_table={
-	meta='demo.des',--meta name
+	meta='demo.desc',--meta name
 	xls='demo.xls',--default name is same with meta 
 	bin='demo.bin',--default name is same with meta
 	count=100, --default is 16
