@@ -1,10 +1,12 @@
+////////// generate protobuf proto file begin meta = Demo //////////
+message Demo {
+	required	uint32	id	=	1  ; 	//desc demo //ID
+	required	uint32	lv	=	2  ; 	//desc demo //等级
+	optional	string	name	=	3 [default='this is a default value'] ; 	//desc demo //名字
+	optional	string	desc	=	4  ; 	//desc demo //描述
+}
 
-message	Demo
-{
-	required	uint32	id		=	1;
-	optional	string	name	=	2;
-};
-message DemoTable
-{
-	repeated	Demo	list	=	1;
-};
+message DemoTable {
+	repeated	Demo	list	=	1 ;
+}
+//////////// generate protobuf proto file end meta = Demo ////////
