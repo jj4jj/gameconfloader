@@ -20,6 +20,7 @@ addtable(conv_table)
 for k,v in ipairs(conv_tables) do
 	tips = "conv talbe "..k.." : "..v.meta.." from "..v.xls.." to "..v.bin
 	print(tips)
+	--python convlist.py demo_desc Demo xls/demo.xlsx data/demo.bin
 	--call python script generate proto 
 	--call protobuff genetae python or cpp gen
 	--call python script genetate bin from xls with proto

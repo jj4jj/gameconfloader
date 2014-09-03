@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #-*-coding:utf-8-*- 
 
-
+import os
 import sys
 import xlrd
 reload(sys)
@@ -56,21 +56,20 @@ def printObj(tableObj):
 
 if (len(sys.argv) < 4):
 	print("usage:./convlist.py <meta file> <MetaName> <xlsFile> <binFile>")
-	print("eg.:./convlist.py demo.desc Demo demo.xls demo.bin")
+	print("eg.:./convlist.py demo_desc Demo demo.xls demo.bin")
 	print("	it will read meta/demo.desc file generate mid/demo_keywords.py and mid/demo.proto file")
 	print("	read demo.xls file generate a DemoTable object with demo.proto and demo_keywords ")
 	print("	output name is data/demo.bin")
 	sys.exit(-1)
 
-metaFile=sys.argv[1]
+metaFilePath=sys.argv[1]
 metaName=sys.argv[2]
 metaTableName=metaName+'Table'
-
+metaFile=metaFilePath.split('/')[-1]
 sys.path.append('gen')
 sys.path.append('mid')
 sys.path.append('meta')
 sys.path.append('.')
-import os
 
 metaPBPackage=metaName+"_pb2"
 metaKeywords=metaName+"_keywords"
@@ -78,23 +77,25 @@ metaKeywords=metaName+"_keywords"
 #conv desc to proto file
 cvDsc = __import__('convDesc')
 
-metaPy = metaFile.partition('.')[0]
+metaPy = metaFile.split('.')[0]
+
 mtDesc = __import__(metaPy)
 
-metaProtoName=metaName+'.proto'
+metaProtoName= 'mid/'+metaName+'.proto'
 f = open(metaProtoName,'wb')
 f.write(cvDsc.ConvDescToProtoCode(metaName,mtDesc.Meta))
 f.close()
 
 
-f = open(metaKeywords+'.py','wb')
+f = open('mid/'+metaKeywords+'.py','wb')
 f.write(cvDsc.ConvDescToPyKeywords(mtDesc.Meta))
 f.close()
 
 ###############################################################################
 #generate proto file
-execString = 'protoc '+metaProtoName+' --python_out=gen';
+execString = 'protoc --proto_path=./mid '+metaProtoName+' --python_out=gen --cpp_out=include';
 print("system is exec :'"+execString+"' , pls waiting ...")
+
 os.system(execString)
 
 ###############################################################################

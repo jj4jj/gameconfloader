@@ -1,4 +1,3 @@
-
 #######################################################
 def ConvDescToProtoCode(name,dsc):
 	proto = '////////// generate protobuf proto file begin meta = '+name+' //////////\n'
