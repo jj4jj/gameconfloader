@@ -1,0 +1,9 @@
+
+1. read conf.cfg get all files to be generated (table meta).
+2. for each table convert meta to a language inteface and generate 
+	resouce bin files .
+	2.1. read meta.des file , gerate a proto file
+	2.2. read xls file with proto file generate all files .
+
+
+
