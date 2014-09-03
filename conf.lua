@@ -29,10 +29,9 @@ addtable
 {
 	meta=demo.des,--meta name
 	xls=demo.xls,--default name is same with meta 
-	rname=demo,--default name is same with meta
+	bin=demo,--default name is same with meta
 	count=100, --default is 16
 	sort=asc,--default is asc
-	key=1,--default is 1
 	group=1,--default is 1
 }
 
