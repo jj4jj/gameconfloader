@@ -5,7 +5,7 @@ a loader that convert many xls files to a binary file or text file to supporting
 * Environment requiration
  - python 2.6 later need
  - protobuf-python need installed
-  - U can got it in github google , then setup.py build/install
+  -- U can got it in github google , then setup.py build/install
  - xlrd python module need installed
 * Let your data ready
  - add the table entry description file <demo_desc.py> into 'meta' dir
