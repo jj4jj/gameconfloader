@@ -1,5 +1,0 @@
-
-1.read conf.cfg get all entries.
-2.convert all entries to bin files
-	2.1.conv demo.desc to demo.proto
-	2.2.read xls dump table with proto
