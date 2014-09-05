@@ -6,4 +6,104 @@
 	2.2. read xls file with proto file generate all files .
 
 
+-------------------------------------------------------------------------
+demo_desc.py describe the xls title line every title map a entry sub attr
+it's recursively .
+eg.
+
+A=[
+{},
+{},
+]
+B=[
+{A},
+{},
+]
+Meta=[
+{A}
+{B}
+]
+
+--------------------------------------------------------------------------
+Algorithm1.get a meta sub attr from a desc string
+--------------------------------------------------------------------------
+mpTitleMap.match(title)
+	#if all matched return 
+	#return attr.name.substr(atitle)
+	(atitle,id,tdesc) <- title
+	if [atitle]
+		#id
+		return ([atitile],id)
+	else
+		return nil
+GetAttr(attrName)
+	id=attrName.id
+	attr = self.attrName
+	if(id > 0)
+		while(len(attr) < id)
+			attr.add()
+		idx = id - 1
+		return attr[idx]
+	else
+		return attr
+	
+setTileValue(metaObj,title,value)
+	if(title is nil)
+		metaObj = value
+	else 
+		attrName = metaObj.mpTitleMap.match(title)
+		if(attrName is nil)
+			title can't find title map
+			return -1
+		attrObj = metaObj.GetAttr(attrName)				
+		setTitleValue(attrObj,title-attrName,value)
+
+
+
+
+--------------------------------------------------------------------------
+Algorithm2.generate meta keywords
+--------------------------------------------------------------------------
+GenerateTitleMap(metaObj)
+	titleMap={}
+	for sub in metaObj
+		if(sub.type.struct && !titleMap[sub.type])
+			subObj = getObj(sub.type)
+			titleMap[sub.type]=GenerateTitleMap(subObj)
+		titleMap['sub.cname'] = sub.name
+	return titleMap	
+			
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------
+Algorithm3.generate meta proto
+--------------------------------------------------------------------------
+GeneratePrimtiveProto(metaObj,level)
+	proto = '\t'{level}
+	proto = 'message '+metaObj.name
+	for entry in metaObj
+		proto += entryToLine(entry)
+	return proto
+
+GenerateProto(metaObj,level)
+	#topology sort
+	#most dependly meta will generate first
+	for entry in metaObj
+		if entry.struct
+			GenerateProto(metaObj,level+1)
+	proto += GeneratePrimtiveProto(metaObj,level)
+	return proto
+	
+
+
+
+
+
+
 

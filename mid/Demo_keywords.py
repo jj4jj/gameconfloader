@@ -1,7 +1,7 @@
 ##### generate dsc keywords file begin #######
 #-*-coding:utf-8-*-
 def TitleMap():
-	mp={
+	mp['Meta']={
 		ur'ID':'id',
 		ur'等级':'lv',
 		ur'名字':'name',
