@@ -9,8 +9,8 @@ convTableList=(
 {
 	'name':ur'示例显示表',#display name
 	'metaName':'Demo',#meta name
-	'metaFile':'demo.desc',#meta name
-	'xls':'demo.xls',#default name is same with meta 
+	'metaFile':'demo_desc.py',#meta name
+	'xls':'demo.xlsx',#default name is same with meta 
 	'bin':'demo.bin',#default name is same with meta
 	'count':100, #default is 16
 	'sort':'asc',#default is asc

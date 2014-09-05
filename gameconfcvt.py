@@ -18,7 +18,7 @@ for cv in ct.GetConvertTableList():
 	AddTable(cv)
 ############################################
 for k in convTables.keys():
-	execString = 'python convlist.py meta/'+convTables[k]['metaFile']+' '+\
+	execString = 'python ConvertMeta.py meta/'+convTables[k]['metaFile']+' '+\
 		convTables[k]['metaName']+' xls/'+\
 		convTables[k]['xls']+' data/'+convTables[k]['bin']
 	print(execString)

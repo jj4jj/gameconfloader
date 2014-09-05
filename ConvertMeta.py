@@ -1,66 +1,25 @@
 #!/usr/bin/python
 #-*-coding:utf-8-*- 
-
-import os
 import sys
-import xlrd
-reload(sys)
-sys.setdefaultencoding("utf-8")
-############################################################################
-def writeXlsToBin(tableObj,xlsName,binDataName,titleMap):
-	print('convert '+xlsName+' to '+binDataName+' ...')
-	xlsData = xlrd.open_workbook(xlsName)
-	for table in xlsData.sheets():
-		for row in range(table.nrows):
-			if row > 0:
-				entry = tableObj.list.add()
-			for col in range(table.ncols):
-				if row == 0:
-					continue
-				else:
-					attrName = titleMap[table.cell(0,col).value]
-					attrType = type(getattr(entry,attrName))
-					#print('convert row '+str(row)+' col '+str(col)+' type is '+str(attrType)+' ...')
-					attrValue = (attrType)(table.cell(row,col).value)
-					setattr(entry,attrName,attrValue)
-	f=open(binDataName,"wb")
-	f.write(tableObj.SerializeToString())
-	f.close()
-
-#############################################################################
-def readBinToObj(tableObj,binDataName):
-	f=open("demo.bin","rb")
-	tableObj.ParseFromString(f.read())
-	f.close()
-#############################################################################
-#import re
-def printObj(tableObj):
-	it = 0
-	for entry in tableObj.list:
-		entry_string=""
-		if 0 == it:
-			for attr in entry.ListFields():
-				entry_string += str(attr[0].name) + '\t'
-			print(entry_string)
-			it=1
-		entry_string=""
-		for attr in entry.ListFields():
-			entry_string += str(getattr(entry,str(attr[0].name))) + '\t'
-		print(entry_string)
-#############################################################################
+import os
 #force load
 
-
+sys.path.append('.')
+convUtil=__import__('ConvUtil')
 #############################################################################
 
 
 if (len(sys.argv) < 4):
-	print("usage:./convlist.py <meta file> <MetaName> <xlsFile> <binFile>")
+	print("usage:python"+sys.argv[0]+" <meta file> <MetaName> <xlsFile> <binFile>")
 	print("eg.:./convlist.py demo_desc Demo demo.xls demo.bin")
 	print("	it will read meta/demo.desc file generate mid/demo_keywords.py and mid/demo.proto file")
 	print("	read demo.xls file generate a DemoTable object with demo.proto and demo_keywords ")
 	print("	output name is data/demo.bin")
 	sys.exit(-1)
+readCheck = 0
+if (len(sys.argv) > 4):
+	print(sys.argv[4])
+	readCheck = 1	
 
 metaFilePath=sys.argv[1]
 metaName=sys.argv[2]
@@ -69,7 +28,7 @@ metaFile=metaFilePath.split('/')[-1]
 sys.path.append('gen')
 sys.path.append('mid')
 sys.path.append('meta')
-sys.path.append('.')
+
 
 metaPBPackage=metaName+"_pb2"
 metaKeywords=metaName+"_keywords"
@@ -108,7 +67,16 @@ metaTableObj = getattr(md,metaTableName)()
 metaTitleMap = getattr(mdk,'TitleMap')()
 #check
 ##############################################################################
-writeXlsToBin(metaTableObj,xlsFile,binFile,metaTitleMap);
+convUtil.writeXlsToBin(metaTableObj,xlsFile,binFile,metaTitleMap);
+
+
+#############################################################################
+if(readCheck > 0):
+	objTable = getattr(md,metaTableName)
+	convUtil.readMetaFromBin(objTable,binFile)
+	print("read check from binFile = "+binFile)
+	convUtil.printObj(objTable)
+
 
 
 
