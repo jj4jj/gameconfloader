@@ -1,12 +1,21 @@
-////////// generate protobuf proto file begin meta = Demo //////////
+message Attr {
+	required	uint32	id	=	1  ; 	//desc demo --cname=ID
+	optional	uint32	value	=	2 [default=24] ; 	//value desc --cname=CValue
+}
+message Monster {
+	required	uint32	id	=	1  ; 	//desc demo --cname=ID
+	optional	string	name	=	2 [default='this is a default value'] ; 	//desc demo --cname=Name
+}
 message Demo {
-	required	uint32	id	=	1  ; 	//desc demo //ID
-	required	uint32	lv	=	2  ; 	//desc demo //等级
-	optional	string	name	=	3 [default='this is a default value'] ; 	//desc demo //名字
-	optional	string	desc	=	4  ; 	//desc demo //描述
+	required	uint32	id	=	1  ; 	//desc demo --cname=ID
+	required	uint32	lv	=	2  ; 	//desc demo --cname=Level
+	optional	string	name	=	3 [default='this is a default value'] ; 	//desc demo --cname=Name
+	optional	string	desc	=	4  ; 	//desc demo --cname=Desc
+	repeated	Attr	attr	=	5  ; 	//属性描述 --cname=CAttr
+	optional	Monster	monster	=	6  ; 	//怪物描述 --cname=CMonster
+	repeated	uint32	shape	=	7 [packed=true] ; 	//特点描述 --cname=CSP
 }
 
 message DemoTable {
 	repeated	Demo	list	=	1 ;
 }
-//////////// generate protobuf proto file end meta = Demo ////////

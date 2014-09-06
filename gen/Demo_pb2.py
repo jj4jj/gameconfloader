@@ -18,11 +18,85 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='Demo.proto',
   package='',
-  serialized_pb=_b('\n\nDemo.proto\"S\n\x04\x44\x65mo\x12\n\n\x02id\x18\x01 \x02(\r\x12\n\n\x02lv\x18\x02 \x02(\r\x12%\n\x04name\x18\x03 \x01(\t:\x17this is a default value\x12\x0c\n\x04\x64\x65sc\x18\x04 \x01(\t\" \n\tDemoTable\x12\x13\n\x04list\x18\x01 \x03(\x0b\x32\x05.Demo')
+  serialized_pb=_b('\n\nDemo.proto\"%\n\x04\x41ttr\x12\n\n\x02id\x18\x01 \x02(\r\x12\x11\n\x05value\x18\x02 \x01(\r:\x02\x32\x34\"<\n\x07Monster\x12\n\n\x02id\x18\x01 \x02(\r\x12%\n\x04name\x18\x02 \x01(\t:\x17this is a default value\"\x96\x01\n\x04\x44\x65mo\x12\n\n\x02id\x18\x01 \x02(\r\x12\n\n\x02lv\x18\x02 \x02(\r\x12%\n\x04name\x18\x03 \x01(\t:\x17this is a default value\x12\x0c\n\x04\x64\x65sc\x18\x04 \x01(\t\x12\x13\n\x04\x61ttr\x18\x05 \x03(\x0b\x32\x05.Attr\x12\x19\n\x07monster\x18\x06 \x01(\x0b\x32\x08.Monster\x12\x11\n\x05shape\x18\x07 \x03(\rB\x02\x10\x01\" \n\tDemoTable\x12\x13\n\x04list\x18\x01 \x03(\x0b\x32\x05.Demo')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
+
+
+_ATTR = _descriptor.Descriptor(
+  name='Attr',
+  full_name='Attr',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='Attr.id', index=0,
+      number=1, type=13, cpp_type=3, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='Attr.value', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=True, default_value=24,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=14,
+  serialized_end=51,
+)
+
+
+_MONSTER = _descriptor.Descriptor(
+  name='Monster',
+  full_name='Monster',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='Monster.id', index=0,
+      number=1, type=13, cpp_type=3, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='Monster.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=True, default_value=_b("this is a default value").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=53,
+  serialized_end=113,
+)
 
 
 _DEMO = _descriptor.Descriptor(
@@ -60,6 +134,27 @@ _DEMO = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='attr', full_name='Demo.attr', index=4,
+      number=5, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='monster', full_name='Demo.monster', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='shape', full_name='Demo.shape', index=6,
+      number=7, type=13, cpp_type=3, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\020\001'))),
   ],
   extensions=[
   ],
@@ -71,8 +166,8 @@ _DEMO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=14,
-  serialized_end=97,
+  serialized_start=116,
+  serialized_end=266,
 )
 
 
@@ -101,13 +196,31 @@ _DEMOTABLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=99,
-  serialized_end=131,
+  serialized_start=268,
+  serialized_end=300,
 )
 
+_DEMO.fields_by_name['attr'].message_type = _ATTR
+_DEMO.fields_by_name['monster'].message_type = _MONSTER
 _DEMOTABLE.fields_by_name['list'].message_type = _DEMO
+DESCRIPTOR.message_types_by_name['Attr'] = _ATTR
+DESCRIPTOR.message_types_by_name['Monster'] = _MONSTER
 DESCRIPTOR.message_types_by_name['Demo'] = _DEMO
 DESCRIPTOR.message_types_by_name['DemoTable'] = _DEMOTABLE
+
+Attr = _reflection.GeneratedProtocolMessageType('Attr', (_message.Message,), dict(
+  DESCRIPTOR = _ATTR,
+  __module__ = 'Demo_pb2'
+  # @@protoc_insertion_point(class_scope:Attr)
+  ))
+_sym_db.RegisterMessage(Attr)
+
+Monster = _reflection.GeneratedProtocolMessageType('Monster', (_message.Message,), dict(
+  DESCRIPTOR = _MONSTER,
+  __module__ = 'Demo_pb2'
+  # @@protoc_insertion_point(class_scope:Monster)
+  ))
+_sym_db.RegisterMessage(Monster)
 
 Demo = _reflection.GeneratedProtocolMessageType('Demo', (_message.Message,), dict(
   DESCRIPTOR = _DEMO,
@@ -124,4 +237,6 @@ DemoTable = _reflection.GeneratedProtocolMessageType('DemoTable', (_message.Mess
 _sym_db.RegisterMessage(DemoTable)
 
 
+_DEMO.fields_by_name['shape'].has_options = True
+_DEMO.fields_by_name['shape']._options = _descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\020\001'))
 # @@protoc_insertion_point(module_scope)

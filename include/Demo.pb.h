@@ -31,10 +31,196 @@ void  protobuf_AddDesc_Demo_2eproto();
 void protobuf_AssignDesc_Demo_2eproto();
 void protobuf_ShutdownFile_Demo_2eproto();
 
+class Attr;
+class Monster;
 class Demo;
 class DemoTable;
 
 // ===================================================================
+
+class Attr : public ::google::protobuf::Message {
+ public:
+  Attr();
+  virtual ~Attr();
+
+  Attr(const Attr& from);
+
+  inline Attr& operator=(const Attr& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Attr& default_instance();
+
+  void Swap(Attr* other);
+
+  // implements Message ----------------------------------------------
+
+  Attr* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Attr& from);
+  void MergeFrom(const Attr& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required uint32 id = 1;
+  inline bool has_id() const;
+  inline void clear_id();
+  static const int kIdFieldNumber = 1;
+  inline ::google::protobuf::uint32 id() const;
+  inline void set_id(::google::protobuf::uint32 value);
+
+  // optional uint32 value = 2 [default = 24];
+  inline bool has_value() const;
+  inline void clear_value();
+  static const int kValueFieldNumber = 2;
+  inline ::google::protobuf::uint32 value() const;
+  inline void set_value(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:Attr)
+ private:
+  inline void set_has_id();
+  inline void clear_has_id();
+  inline void set_has_value();
+  inline void clear_has_value();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 id_;
+  ::google::protobuf::uint32 value_;
+  friend void  protobuf_AddDesc_Demo_2eproto();
+  friend void protobuf_AssignDesc_Demo_2eproto();
+  friend void protobuf_ShutdownFile_Demo_2eproto();
+
+  void InitAsDefaultInstance();
+  static Attr* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class Monster : public ::google::protobuf::Message {
+ public:
+  Monster();
+  virtual ~Monster();
+
+  Monster(const Monster& from);
+
+  inline Monster& operator=(const Monster& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Monster& default_instance();
+
+  void Swap(Monster* other);
+
+  // implements Message ----------------------------------------------
+
+  Monster* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Monster& from);
+  void MergeFrom(const Monster& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required uint32 id = 1;
+  inline bool has_id() const;
+  inline void clear_id();
+  static const int kIdFieldNumber = 1;
+  inline ::google::protobuf::uint32 id() const;
+  inline void set_id(::google::protobuf::uint32 value);
+
+  // optional string name = 2 [default = "this is a default value"];
+  inline bool has_name() const;
+  inline void clear_name();
+  static const int kNameFieldNumber = 2;
+  inline const ::std::string& name() const;
+  inline void set_name(const ::std::string& value);
+  inline void set_name(const char* value);
+  inline void set_name(const char* value, size_t size);
+  inline ::std::string* mutable_name();
+  inline ::std::string* release_name();
+  inline void set_allocated_name(::std::string* name);
+
+  // @@protoc_insertion_point(class_scope:Monster)
+ private:
+  inline void set_has_id();
+  inline void clear_has_id();
+  inline void set_has_name();
+  inline void clear_has_name();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  static ::std::string* _default_name_;
+  ::std::string* name_;
+  ::google::protobuf::uint32 id_;
+  friend void  protobuf_AddDesc_Demo_2eproto();
+  friend void protobuf_AssignDesc_Demo_2eproto();
+  friend void protobuf_ShutdownFile_Demo_2eproto();
+
+  void InitAsDefaultInstance();
+  static Monster* default_instance_;
+};
+// -------------------------------------------------------------------
 
 class Demo : public ::google::protobuf::Message {
  public:
@@ -127,6 +313,39 @@ class Demo : public ::google::protobuf::Message {
   inline ::std::string* release_desc();
   inline void set_allocated_desc(::std::string* desc);
 
+  // repeated .Attr attr = 5;
+  inline int attr_size() const;
+  inline void clear_attr();
+  static const int kAttrFieldNumber = 5;
+  inline const ::Attr& attr(int index) const;
+  inline ::Attr* mutable_attr(int index);
+  inline ::Attr* add_attr();
+  inline const ::google::protobuf::RepeatedPtrField< ::Attr >&
+      attr() const;
+  inline ::google::protobuf::RepeatedPtrField< ::Attr >*
+      mutable_attr();
+
+  // optional .Monster monster = 6;
+  inline bool has_monster() const;
+  inline void clear_monster();
+  static const int kMonsterFieldNumber = 6;
+  inline const ::Monster& monster() const;
+  inline ::Monster* mutable_monster();
+  inline ::Monster* release_monster();
+  inline void set_allocated_monster(::Monster* monster);
+
+  // repeated uint32 shape = 7 [packed = true];
+  inline int shape_size() const;
+  inline void clear_shape();
+  static const int kShapeFieldNumber = 7;
+  inline ::google::protobuf::uint32 shape(int index) const;
+  inline void set_shape(int index, ::google::protobuf::uint32 value);
+  inline void add_shape(::google::protobuf::uint32 value);
+  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      shape() const;
+  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_shape();
+
   // @@protoc_insertion_point(class_scope:Demo)
  private:
   inline void set_has_id();
@@ -137,6 +356,8 @@ class Demo : public ::google::protobuf::Message {
   inline void clear_has_name();
   inline void set_has_desc();
   inline void clear_has_desc();
+  inline void set_has_monster();
+  inline void clear_has_monster();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -147,6 +368,10 @@ class Demo : public ::google::protobuf::Message {
   static ::std::string* _default_name_;
   ::std::string* name_;
   ::std::string* desc_;
+  ::google::protobuf::RepeatedPtrField< ::Attr > attr_;
+  ::Monster* monster_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > shape_;
+  mutable int _shape_cached_byte_size_;
   friend void  protobuf_AddDesc_Demo_2eproto();
   friend void protobuf_AssignDesc_Demo_2eproto();
   friend void protobuf_ShutdownFile_Demo_2eproto();
@@ -240,6 +465,162 @@ class DemoTable : public ::google::protobuf::Message {
 
 
 // ===================================================================
+
+// Attr
+
+// required uint32 id = 1;
+inline bool Attr::has_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Attr::set_has_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Attr::clear_has_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void Attr::clear_id() {
+  id_ = 0u;
+  clear_has_id();
+}
+inline ::google::protobuf::uint32 Attr::id() const {
+  // @@protoc_insertion_point(field_get:Attr.id)
+  return id_;
+}
+inline void Attr::set_id(::google::protobuf::uint32 value) {
+  set_has_id();
+  id_ = value;
+  // @@protoc_insertion_point(field_set:Attr.id)
+}
+
+// optional uint32 value = 2 [default = 24];
+inline bool Attr::has_value() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Attr::set_has_value() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Attr::clear_has_value() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void Attr::clear_value() {
+  value_ = 24u;
+  clear_has_value();
+}
+inline ::google::protobuf::uint32 Attr::value() const {
+  // @@protoc_insertion_point(field_get:Attr.value)
+  return value_;
+}
+inline void Attr::set_value(::google::protobuf::uint32 value) {
+  set_has_value();
+  value_ = value;
+  // @@protoc_insertion_point(field_set:Attr.value)
+}
+
+// -------------------------------------------------------------------
+
+// Monster
+
+// required uint32 id = 1;
+inline bool Monster::has_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Monster::set_has_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Monster::clear_has_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void Monster::clear_id() {
+  id_ = 0u;
+  clear_has_id();
+}
+inline ::google::protobuf::uint32 Monster::id() const {
+  // @@protoc_insertion_point(field_get:Monster.id)
+  return id_;
+}
+inline void Monster::set_id(::google::protobuf::uint32 value) {
+  set_has_id();
+  id_ = value;
+  // @@protoc_insertion_point(field_set:Monster.id)
+}
+
+// optional string name = 2 [default = "this is a default value"];
+inline bool Monster::has_name() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Monster::set_has_name() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Monster::clear_has_name() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void Monster::clear_name() {
+  if (name_ != _default_name_) {
+    name_->assign(*_default_name_);
+  }
+  clear_has_name();
+}
+inline const ::std::string& Monster::name() const {
+  // @@protoc_insertion_point(field_get:Monster.name)
+  return *name_;
+}
+inline void Monster::set_name(const ::std::string& value) {
+  set_has_name();
+  if (name_ == _default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+  // @@protoc_insertion_point(field_set:Monster.name)
+}
+inline void Monster::set_name(const char* value) {
+  set_has_name();
+  if (name_ == _default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+  // @@protoc_insertion_point(field_set_char:Monster.name)
+}
+inline void Monster::set_name(const char* value, size_t size) {
+  set_has_name();
+  if (name_ == _default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:Monster.name)
+}
+inline ::std::string* Monster::mutable_name() {
+  set_has_name();
+  if (name_ == _default_name_) {
+    name_ = new ::std::string(*_default_name_);
+  }
+  // @@protoc_insertion_point(field_mutable:Monster.name)
+  return name_;
+}
+inline ::std::string* Monster::release_name() {
+  clear_has_name();
+  if (name_ == _default_name_) {
+    return NULL;
+  } else {
+    ::std::string* temp = name_;
+    name_ = const_cast< ::std::string*>(_default_name_);
+    return temp;
+  }
+}
+inline void Monster::set_allocated_name(::std::string* name) {
+  if (name_ != _default_name_) {
+    delete name_;
+  }
+  if (name) {
+    set_has_name();
+    name_ = name;
+  } else {
+    clear_has_name();
+    name_ = const_cast< ::std::string*>(_default_name_);
+  }
+  // @@protoc_insertion_point(field_set_allocated:Monster.name)
+}
+
+// -------------------------------------------------------------------
 
 // Demo
 
@@ -441,6 +822,107 @@ inline void Demo::set_allocated_desc(::std::string* desc) {
     desc_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:Demo.desc)
+}
+
+// repeated .Attr attr = 5;
+inline int Demo::attr_size() const {
+  return attr_.size();
+}
+inline void Demo::clear_attr() {
+  attr_.Clear();
+}
+inline const ::Attr& Demo::attr(int index) const {
+  // @@protoc_insertion_point(field_get:Demo.attr)
+  return attr_.Get(index);
+}
+inline ::Attr* Demo::mutable_attr(int index) {
+  // @@protoc_insertion_point(field_mutable:Demo.attr)
+  return attr_.Mutable(index);
+}
+inline ::Attr* Demo::add_attr() {
+  // @@protoc_insertion_point(field_add:Demo.attr)
+  return attr_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::Attr >&
+Demo::attr() const {
+  // @@protoc_insertion_point(field_list:Demo.attr)
+  return attr_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::Attr >*
+Demo::mutable_attr() {
+  // @@protoc_insertion_point(field_mutable_list:Demo.attr)
+  return &attr_;
+}
+
+// optional .Monster monster = 6;
+inline bool Demo::has_monster() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void Demo::set_has_monster() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void Demo::clear_has_monster() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void Demo::clear_monster() {
+  if (monster_ != NULL) monster_->::Monster::Clear();
+  clear_has_monster();
+}
+inline const ::Monster& Demo::monster() const {
+  // @@protoc_insertion_point(field_get:Demo.monster)
+  return monster_ != NULL ? *monster_ : *default_instance_->monster_;
+}
+inline ::Monster* Demo::mutable_monster() {
+  set_has_monster();
+  if (monster_ == NULL) monster_ = new ::Monster;
+  // @@protoc_insertion_point(field_mutable:Demo.monster)
+  return monster_;
+}
+inline ::Monster* Demo::release_monster() {
+  clear_has_monster();
+  ::Monster* temp = monster_;
+  monster_ = NULL;
+  return temp;
+}
+inline void Demo::set_allocated_monster(::Monster* monster) {
+  delete monster_;
+  monster_ = monster;
+  if (monster) {
+    set_has_monster();
+  } else {
+    clear_has_monster();
+  }
+  // @@protoc_insertion_point(field_set_allocated:Demo.monster)
+}
+
+// repeated uint32 shape = 7 [packed = true];
+inline int Demo::shape_size() const {
+  return shape_.size();
+}
+inline void Demo::clear_shape() {
+  shape_.Clear();
+}
+inline ::google::protobuf::uint32 Demo::shape(int index) const {
+  // @@protoc_insertion_point(field_get:Demo.shape)
+  return shape_.Get(index);
+}
+inline void Demo::set_shape(int index, ::google::protobuf::uint32 value) {
+  shape_.Set(index, value);
+  // @@protoc_insertion_point(field_set:Demo.shape)
+}
+inline void Demo::add_shape(::google::protobuf::uint32 value) {
+  shape_.Add(value);
+  // @@protoc_insertion_point(field_add:Demo.shape)
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+Demo::shape() const {
+  // @@protoc_insertion_point(field_list:Demo.shape)
+  return shape_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+Demo::mutable_shape() {
+  // @@protoc_insertion_point(field_mutable_list:Demo.shape)
+  return &shape_;
 }
 
 // -------------------------------------------------------------------

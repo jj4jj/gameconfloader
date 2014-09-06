@@ -3,6 +3,10 @@ import sys
 import xlrd
 reload(sys)
 sys.setdefaultencoding("utf-8")
+
+
+sys.path.append('tools')
+mh = __import__('MetaInfoHelper')
 ############################################################################
 def writeXlsToBin(tableObj,xlsName,binDataName,titleMap):
 	print('convert '+xlsName+' to '+binDataName+' ...')
@@ -15,11 +19,9 @@ def writeXlsToBin(tableObj,xlsName,binDataName,titleMap):
 				if row == 0:
 					continue
 				else:
-					attrName = titleMap[table.cell(0,col).value]
-					attrType = type(getattr(entry,attrName))
-					#print('convert row '+str(row)+' col '+str(col)+' type is '+str(attrType)+' ...')
-					attrValue = (attrType)(table.cell(row,col).value)
-					setattr(entry,attrName,attrValue)
+					attrTitleName = str(table.cell(0,col).value)
+					attrValue = table.cell(row,col).value
+					mh.SetMetaObjValueByTitle(entry,titleMap,attrTitleName,attrValue)
 	f=open(binDataName,"wb")
 	f.write(tableObj.SerializeToString())
 	f.close()
