@@ -111,16 +111,18 @@ def SetAttrFromMetaTitle(metaObj,curTitleMap,title,rootTitleMap,v):
 	mostLike = sorted(curTitleMap.keys(),key = titleSortKey,reverse = True) 
 	aTitle = (mostLike[0])	
 	#print(mostLike)
-	print('most like '+title+'->'+aTitle)
+	#print('most like '+title+'->'+aTitle)
 	if len(title) > len(aTitle):
-		if( str(title[len(aTitle):len(aTitle)+1]).isdigit() ):
+		idx = title.index(aTitle)
+		#print(idx,title[idx:],len(title),len(aTitle))
+		if( unicode(title[len(aTitle):len(aTitle)+1]).isdigit() ):
 			tid = title[len(aTitle):len(aTitle)+1]
 			tTitle = title[len(aTitle)+1:]
 		else:
 			tTitle = title[len(aTitle):]
 	#(atitle,id,tdesc) <- title
 	#######################################
-	print('aTitle('+aTitle+') id('+tid+') tTitle('+tTitle+')')
+	#print('aTitle('+aTitle+') id('+tid+') tTitle('+tTitle+')')
 	#DumpTitleMap(titleMap,'Root',0)
 	if curTitleMap.get(aTitle,None) != None:
 		#get attr = meta.name object		
@@ -153,7 +155,7 @@ def SetAttrFromMetaTitle(metaObj,curTitleMap,title,rootTitleMap,v):
 				return SetAttrFromMetaTitle(attrObj,rootTitleMap[typeName],tTitle,rootTitleMap,v)
 			typeInfo = type(attrObj)
 			#attrObj = (typeInfo)(v)
-			print(typeInfo,attrName)
+			#print(typeInfo,attrName)
 			setattr(metaObj,attrName,(typeInfo)(v))
 			return attrObj
 	else:

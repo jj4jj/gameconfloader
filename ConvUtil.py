@@ -19,14 +19,15 @@ def writeXlsToBin(tableObj,xlsName,binDataName,titleMap):
 				if row == 0:
 					continue
 				else:
-					attrTitleName = str(table.cell(0,col).value)
+					attrTitleName = unicode(table.cell(0,col).value)
 					attrValue = table.cell(row,col).value
 					mh.SetMetaObjValueByTitle(entry,titleMap,attrTitleName,attrValue)
 	f=open(binDataName,"wb")
 	f.write(tableObj.SerializeToString())
 	f.close()
 
-#############################################################################
+#######################################
+######################################
 def readMetaFromBin(tableObj,binDataName):
 	f=open(binDataName,"rb")
 	tableObj.ParseFromString(f.read())
@@ -39,12 +40,12 @@ def printObj(tableObj):
 		entry_string=""
 		if 0 == it:
 			for attr in entry.ListFields():
-				entry_string += str(attr[0].name) + '\t'
+				entry_string += unicode(attr[0].name) + '\t'
 			print(entry_string)
 			it=1
 		entry_string=""
 		for attr in entry.ListFields():
-			entry_string += str(getattr(entry,str(attr[0].name))) + '\t'
+			entry_string += unicode(getattr(entry,str(attr[0].name))) + '\t'
 		print(entry_string)
 #############################################################################
 
