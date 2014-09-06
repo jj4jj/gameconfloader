@@ -92,7 +92,7 @@ def DumpTitleMap(titleMap,Name,level):
 			DumpTitleMap(titleMap[key],key,level+1)
 
 import string
-def GetAttrFromMetaTitle(metaObj,curTitleMap,title,rootTitleMap):
+def SetAttrFromMetaTitle(metaObj,curTitleMap,title,rootTitleMap,v):
 	#if all matched return 
 	#return attr.name.substr(atitle)
 	#string.int.string
@@ -135,19 +135,26 @@ def GetAttrFromMetaTitle(metaObj,curTitleMap,title,rootTitleMap):
 				try:
 					attrObj.add()
 				except Exception,ex:
-					print('warnning: add() catch a exception extend!')
-					attrObj.extend(None)
+					print('Fatal Error: not support simple type array !')
+					exit(-1)
 			realAttrObj = attrObj[idx]
 			typeName = realAttrObj.__class__.__name__
-			print('realTypeName:'+typeName)
+			#print('realTypeName:'+typeName)
 			#print('typeName='+typeName+' realTypeName='+realTypeName+'map='+rootTitleMap.get(realTypeName,'None'))
 			if(rootTitleMap.get(typeName,None) != None):
-				return GetAttrFromMetaTitle(attrObj[idx],rootTitleMap[typeName],tTitle,rootTitleMap)
+				return SetAttrFromMetaTitle(attrObj[idx],rootTitleMap[typeName],tTitle,rootTitleMap,v)
+
+			typeInfo = type(realAttrObj)
+			attrObj[idx] = (typeInfo)(v)
 			return realAttrObj
 		else:
-			print('typeName:'+typeName+' title:'+tTitle)
+			#print('typeName:'+typeName+' title:'+tTitle)
 			if(rootTitleMap.get(typeName,None) != None):
-				return GetAttrFromMetaTitle(attrObj,rootTitleMap[typeName],tTitle,rootTitleMap)
+				return SetAttrFromMetaTitle(attrObj,rootTitleMap[typeName],tTitle,rootTitleMap,v)
+			typeInfo = type(attrObj)
+			#attrObj = (typeInfo)(v)
+			print(typeInfo,attrName)
+			setattr(metaObj,attrName,(typeInfo)(v))
 			return attrObj
 	else:
 		print('Error: the Title '+aTitle+' not found in titleMap !')
@@ -156,14 +163,10 @@ def GetAttrFromMetaTitle(metaObj,curTitleMap,title,rootTitleMap):
 
 
 def SetMetaObjValueByTitle(metaObj,titleMap,title,v):
-	print('set titile '+title+' value = '+str(v))
-	attrObj = GetAttrFromMetaTitle(metaObj,titleMap,title,titleMap)
-	if (attrObj != None):
-		typeInfo = type(attrObj)
-		attrObj = (typeInfo)(v)
-	else:
+	#print('set titile '+title+' value = '+str(v))
+	attrObj = SetAttrFromMetaTitle(metaObj,titleMap,title,titleMap,v)
+	if (attrObj == None):
 		print('Error: title not found !')
-
 
 ##give the first meta object 
 ##convert it to a proto message

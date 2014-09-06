@@ -19,8 +19,9 @@ if (len(sys.argv) < 4):
 	print("	output name is data/demo.bin")
 	sys.exit(-1)
 readCheck = 0
-if (len(sys.argv) > 4):
-	print(sys.argv[4])
+print('args num:'+str(len(sys.argv)))
+if (len(sys.argv) > 5):
+	print(sys.argv[5])
 	readCheck = 1	
 
 metaFilePath=sys.argv[1]
@@ -65,13 +66,13 @@ md =__import__(metaPBPackage)
 metaTableObj = getattr(md,metaTableName)()
 #check
 ##############################################################################
-
-convUtil.writeXlsToBin(metaTableObj,xlsFile,binFile,metaTitleMap);
-
+if(readCheck == 0):
+	convUtil.writeXlsToBin(metaTableObj,xlsFile,binFile,metaTitleMap);
+	convUtil.printObj(metaTableObj)
 
 #############################################################################
 if(readCheck > 0):
-	objTable = getattr(md,metaTableName)
+	objTable = getattr(md,metaTableName)()
 	convUtil.readMetaFromBin(objTable,binFile)
 	print("read check from binFile = "+binFile)
 	convUtil.printObj(objTable)
