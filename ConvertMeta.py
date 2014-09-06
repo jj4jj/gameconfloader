@@ -36,8 +36,6 @@ metaPBPackage=metaName+"_pb2"
 
 metaKeywords=metaName+"_keywords"
 
-#conv desc to proto file
-cvDsc = __import__('convDesc')
 
 metaPy = metaFile.split('.')[0]
 
