@@ -148,17 +148,34 @@ def convertxls(xls,convertparam):
 	f.write(tableObj.SerializeToString())
 	f.close()
 
+import datetime,time
+def convert_main():
+	# *.xls:*.proto:meta:*.bin
+	convertmap = {};
+	convertmap_file = open("convertmap.conf")
+	for line in convertmap_file:
+		attrs = line.split(":")
+		print(attrs)
+		convertmap[attrs[0]] = attrs[1:]
+	convertmap_file.close()
+	cpp_include_file = open("./cpp/gameconfloader.h","w+")	
+	cpp_include_file.write("//protobufer generate code include file . don't edit it !\n")
+	now = datetime.datetime.now()
+	cpp_include_file.write("//generate time :"+str(now)+"\n")
+
+	for xls in convertmap.keys():
+		#generate proto buffer src code
+		protocompile(convertmap[xls][0])
+		#append_cpp_include
+		cpp_include_file.write('#include "'+convertmap[xls][0].split(".")[0]+'.pb.h"\n')		
+		#convert to data
+		convertxls(xls,convertmap[xls])
+	cpp_include_file.close()
 
 
-# *.xls:*.proto:meta:*.bin
-convertmap = {};
-convertmap_file = open("convertmap.conf")
-for line in convertmap_file:
-	attrs = line.split(":")
-	print(attrs)
-	convertmap[attrs[0]] = attrs[1:]
-convertmap_file.close()
-for xls in convertmap.keys():
-	protocompile(convertmap[xls][0])
-	convertxls(xls,convertmap[xls])
+
+##########################################################################################################
+print("welcome using game conf res loader tools  !")
+convert_main()
+
 
