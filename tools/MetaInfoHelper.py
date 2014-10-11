@@ -124,19 +124,57 @@ def SetAttrFromMetaTitle(metaObj,curTitleMap,title,rootTitleMap,v):
 	#######################################
 	#print('aTitle('+aTitle+') id('+tid+') tTitle('+tTitle+')')
 	#DumpTitleMap(titleMap,'Root',0)
+	'''
+	TYPE_DOUBLE         = 1,   // double, exactly eight bytes on the wire.
+    TYPE_FLOAT          = 2,   // float, exactly four bytes on the wire.
+    TYPE_INT64          = 3,   // int64, varint on the wire.  Negative numbers
+                               // take 10 bytes.  Use TYPE_SINT64 if negative
+                               // values are likely.
+    TYPE_UINT64         = 4,   // uint64, varint on the wire.
+    TYPE_INT32          = 5,   // int32, varint on the wire.  Negative numbers
+                               // take 10 bytes.  Use TYPE_SINT32 if negative
+                               // values are likely.
+    TYPE_FIXED64        = 6,   // uint64, exactly eight bytes on the wire.
+    TYPE_FIXED32        = 7,   // uint32, exactly four bytes on the wire.
+    TYPE_BOOL           = 8,   // bool, varint on the wire.
+    TYPE_STRING         = 9,   // UTF-8 text.
+    TYPE_GROUP          = 10,  // Tag-delimited message.  Deprecated.
+    TYPE_MESSAGE        = 11,  // Length-delimited message.
+
+    TYPE_BYTES          = 12,  // Arbitrary byte array.
+    TYPE_UINT32         = 13,  // uint32, varint on the wire
+    TYPE_ENUM           = 14,  // Enum, varint on the wire
+    TYPE_SFIXED32       = 15,  // int32, exactly four bytes on the wire
+    TYPE_SFIXED64       = 16,  // int64, exactly eight bytes on the wire
+    TYPE_SINT32         = 17,  // int32, ZigZag-encoded varint on the wire
+    TYPE_SINT64         = 18,  // int64, ZigZag-encoded varint on the wire
+	'''	
 	if curTitleMap.get(aTitle,None) != None:
 		#get attr = meta.name object		
 		attrName = curTitleMap[aTitle]
 		attrObj = getattr(metaObj,attrName)
-		#get attr obj type
+		#get attr obj type+
 		typeName = attrObj.__class__.__name__
+		attrType = metaObj.DESCRIPTOR.fields_by_name[attrName].type		
 		#if attr obj is a array
 		if tid != "" and int(tid) > 0:
 			idx = int(tid) - 1
-			while(len(attrObj) < idx + 1):
+			while(len(attrObj) < idx + 1):							
 				try:
-					attrObj.add()
+					has_default_value = metaObj.DESCRIPTOR.fields_by_name[attrName].has_default_value
+					if(has_default_value):
+						default_value = metaObj.DESCRIPTOR.fields_by_name[attrName].default_value
+						attrObj.extend(default_value)				
+					elif(attrType < 9 or attrType >= 13 and attrType <= 18):
+						attrObj.extend([0])
+					elif(attrType == 9 ):
+						attrObj.extend([0])
+					elif(attrType == 11):
+						attrObj.add()
+					else:
+						print('Fatal Error: not support simple type array !')
 				except Exception,ex:
+					#print(type(attrObj[0]))
 					print('Fatal Error: not support simple type array !')
 					exit(-1)
 			realAttrObj = attrObj[idx]

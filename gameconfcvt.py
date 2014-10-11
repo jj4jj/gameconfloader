@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #-*-coding:utf-8-*-
 import sys
+import os
 reload(sys)
 sys.setdefaultencoding("utf-8")
 convTables={}
@@ -22,6 +23,7 @@ for k in convTables.keys():
 		convTables[k]['metaName']+' xls/'+\
 		convTables[k]['xls']+' data/'+convTables[k]['bin']
 	print(execString)
+	os.system(execString)
 	#python convlist.py meta/demo_desc.py Demo xls/demo.xlsx data/demo.bin
 	#call python script generate proto 
 	#call protobuff genetae python or cpp gen

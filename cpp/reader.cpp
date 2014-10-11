@@ -25,6 +25,7 @@ int main()
 	cout<<dt.list(1).id()<<endl;
 	cout<<dt.list(0).id()<<endl;
 	cout<<dt.list(2).id()<<endl;
+	dt.Ser
 
 	return 0;
 }
